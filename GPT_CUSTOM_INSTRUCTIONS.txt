@@ -1,4 +1,4 @@
-C:\dev Structure - Engineering Workspace (Grade A-)
+C:\dev Structure - Engineering Workspace (Grade A+)
 
 CORE STRUCTURE:
 - apps/ - Deployable applications (one repo per app)
@@ -6,9 +6,18 @@ CORE STRUCTURE:
 - templates/ - Production-ready starter kits (Node TypeScript + Python FastAPI)
 - infra/ - Infrastructure tooling (Sandboxie v1.0 in infra/windows/sandboxie-integration/)
 - docs/ - Complete knowledge base system
-- scripts/ - Helper tools (new-service.ps1 creates projects in 30 seconds)
+- scripts/ - Helper tools (scaffold-repo.ps1, new-service.ps1)
 - scratch/ - Experiments/throwaway code (git-ignored)
 - archive/ - Historical versions
+
+REPO STRUCTURE (inside each app/lib):
+- 10_DOCS/ - Documentation, ADRs
+- 20_SRC/ - Source code
+- 30_DATA/ - Data files (git-ignored)
+- 40_RUNTIME/ - Runtime files, logs (git-ignored)
+- 50_CONFIG/ - Configuration files (.env.example here)
+- 99_ARCHIVE/ - Deprecated code
+- docs/decisions/ - Architectural Decision Records
 
 DOCS ORGANIZATION:
 - docs/reference/ - Quick lookups (git, docker commands)
@@ -21,15 +30,23 @@ DOCS ORGANIZATION:
 FILE NAMING:
 - Documents: YYYY-MM-DD_descriptive-title.md
 - Folders: lowercase-with-dashes
-- No brackets [] in paths (causes PowerShell issues)
+- Services: lowercase-with-dashes (enforced via regex)
+- No brackets [] in paths (PowerShell issues, enforced in scripts)
 
 KEY FEATURES:
-- AI-first: .cursor/rules/ in projects, .cursorignore at root
-- Docker-first: All templates have compose.yml, DevContainers
-- Automated: CI validates templates, new-service.ps1 bootstraps projects
-- Documentation-first: README in every directory, ADRs for decisions
+- AI-first: .cursor/rules/ with project-standards.mdc in every template
+- Docker-first: compose.yml, DevContainers, health checks
+- Automated: CI smoke tests templates, new-service.ps1 with validation
+- Enforced standards: Name validation, token replacement, structure scaffolding
+- Health required: All services have /health endpoint with tests
 
 QUICK CREATE PROJECT:
-C:\dev\scripts\new-service.ps1 -Template starter-python-api -Name my-service
+C:\dev\scripts\new-service.ps1 -Template starter-python-api -Name user-auth -Port 8001
 
-STATUS: Production-ready (2025-10-26). All GPT review fixes implemented.
+VALIDATION:
+- Name must match: ^[a-z0-9-]+$ (lowercase, numbers, dashes only)
+- No brackets/parens allowed in names
+- Port auto-assigned if not specified (8000 Python, 3000 Node)
+- Token replacement: __SERVICE_NAME__, __PORT__
+
+STATUS: Production-ready (2025-10-26). A+ standards enforced.
