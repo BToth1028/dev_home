@@ -223,3 +223,4 @@ Your engineering home is ready. Now when you:
 - `docs/QUICK_START.md` for quick reference
 - `docs/architecture/decisions/2025-10-26_setup-engineering-home.md` for the full decision record
 
+

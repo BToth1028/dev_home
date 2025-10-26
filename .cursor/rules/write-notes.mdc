@@ -21,8 +21,8 @@ Every significant decision or AI conversation summary MUST use this structure:
 ```markdown
 # <Short Title>
 
-**Date:** <YYYY-MM-DD>  
-**Source:** <ChatGPT | Claude | Cursor | Manual>  
+**Date:** <YYYY-MM-DD>
+**Source:** <ChatGPT | Claude | Cursor | Manual>
 **Context:** <1–2 lines explaining why this decision was made>
 
 ---
@@ -102,5 +102,5 @@ When Cursor creates documentation:
 
 ---
 
-**Enforced by:** Cursor rules  
+**Enforced by:** Cursor rules
 **Last updated:** 2025-10-26

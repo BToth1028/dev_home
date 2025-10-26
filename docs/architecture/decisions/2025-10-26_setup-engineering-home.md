@@ -1,7 +1,7 @@
 # Setup Engineering Home Repository
 
-**Date:** 2025-10-26  
-**Source:** ChatGPT  
+**Date:** 2025-10-26
+**Source:** ChatGPT
 **Context:** Asked how to create a new main "home" repo to anchor a polyrepo workspace, integrate Cursor rules, templates, and Sandboxie kit.
 
 ---
@@ -113,7 +113,7 @@ Open in Cursor → both standards and app code are one click away.
   - Pro: Clear boundaries, independent versioning
   - Pro: Easier to set per-repo permissions
   - Con: Need to keep templates in sync manually
-  
+
 - **Monorepo (Not Chosen):** All code in one giant repo
   - Pro: Atomic changes across services
   - Con: Complex build orchestration, all-or-nothing permissions
@@ -129,4 +129,3 @@ Open in Cursor → both standards and app code are one click away.
 ---
 
 **Status:** Accepted
-

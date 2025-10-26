@@ -1,0 +1,30 @@
+# Dependencies / builds
+node_modules/
+dist/
+build/
+.venv/
+__pycache__/
+*.pyc
+
+# Data & logs
+data/
+logs/
+.cache/
+*.csv
+*.parquet
+
+# Sandboxie artifacts, backups
+Sandboxie.ini.bak.*
+*.sbiedump
+sandboxie-logs/
+
+# Archives / old snapshots
+archive/
+templates/_archive/
+
+# Scratch/experiments
+scratch/
+
+# IDE / OS
+.DS_Store
+Thumbs.db

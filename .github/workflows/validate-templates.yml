@@ -1,0 +1,42 @@
+name: Validate Templates
+on: [push, pull_request]
+
+jobs:
+  python-template:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: templates/starter-python-api
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -U pip && pip install -r requirements.txt pytest
+
+      - name: Run tests
+        run: pytest -q
+
+  node-template:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: templates/starter-node-service
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Test
+        run: npm test --silent

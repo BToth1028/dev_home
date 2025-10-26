@@ -3,6 +3,14 @@
 		{
 			"path": ".",
 			"name": "🏠 Engineering Home"
+		},
+		{
+			"path": "apps/example-service",
+			"name": "📦 Example Service"
+		},
+		{
+			"path": "libs/example-lib",
+			"name": "📚 Example Lib"
 		}
 	],
 	"settings": {
@@ -45,4 +53,3 @@
 		]
 	}
 }
-

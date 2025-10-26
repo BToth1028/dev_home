@@ -1,7 +1,7 @@
 # <Short Title>
 
-**Date:** <YYYY-MM-DD>  
-**Source:** <ChatGPT | Claude | Cursor | Manual>  
+**Date:** <YYYY-MM-DD>
+**Source:** <ChatGPT | Claude | Cursor | Manual>
 **Context:** <1–2 lines explaining why this decision was made>
 
 ---
@@ -55,4 +55,3 @@
 ---
 
 **Status:** Draft | Accepted | Deprecated | Superseded by <link>
-
