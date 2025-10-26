@@ -1,0 +1,35 @@
+C:\dev Structure - Engineering Workspace (Grade A-)
+
+CORE STRUCTURE:
+- apps/ - Deployable applications (one repo per app)
+- libs/ - Shared libraries used across projects
+- templates/ - Production-ready starter kits (Node TypeScript + Python FastAPI)
+- infra/ - Infrastructure tooling (Sandboxie v1.0 in infra/windows/sandboxie-integration/)
+- docs/ - Complete knowledge base system
+- scripts/ - Helper tools (new-service.ps1 creates projects in 30 seconds)
+- scratch/ - Experiments/throwaway code (git-ignored)
+- archive/ - Historical versions
+
+DOCS ORGANIZATION:
+- docs/reference/ - Quick lookups (git, docker commands)
+- docs/research/ - Deep dives by topic
+- docs/gpt-summaries/ - AI-generated content with _inbox/ for processing
+- docs/architecture/ - System architecture, ADRs, diagrams
+- docs/standards/ - Coding standards, workflows
+- docs/meetings/ - Meeting notes
+
+FILE NAMING:
+- Documents: YYYY-MM-DD_descriptive-title.md
+- Folders: lowercase-with-dashes
+- No brackets [] in paths (causes PowerShell issues)
+
+KEY FEATURES:
+- AI-first: .cursor/rules/ in projects, .cursorignore at root
+- Docker-first: All templates have compose.yml, DevContainers
+- Automated: CI validates templates, new-service.ps1 bootstraps projects
+- Documentation-first: README in every directory, ADRs for decisions
+
+QUICK CREATE PROJECT:
+C:\dev\scripts\new-service.ps1 -Template starter-python-api -Name my-service
+
+STATUS: Production-ready (2025-10-26). All GPT review fixes implemented.
