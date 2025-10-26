@@ -1,60 +1,6 @@
----
-type: rule
-category: project-standards
----
-
-# Project Standards for __SERVICE_NAME__
-
-## Directory Structure
-
-Use numbered directories for easy sorting:
-- `10_DOCS/` - Documentation, ADRs, guides
-- `20_SRC/` - Source code
-- `30_DATA/` - Data files (git-ignored)
-- `40_RUNTIME/` - Runtime files, logs (git-ignored)
-- `50_CONFIG/` - Configuration files
-- `99_ARCHIVE/` - Deprecated code
-
-## File Naming
-
-- **No brackets**: Use dashes instead of `[]`, `()`, `{}`
-- **Lowercase with dashes**: `my-service-name` not `MyServiceName`
-- **Descriptive**: `user-authentication.ts` not `auth.ts`
-
-## Code Standards
-
-- **Health endpoints**: Always include `/health` that returns `{"ok": true}`
-- **Tests required**: Every endpoint needs tests
-- **TypeScript strict mode**: Enable all strict checks
-- **No `any` types**: Use proper types everywhere
-- **JSDoc comments**: Document complex functions
-
-## Environment
-
-- **Never commit `.env`**: Only commit `.env.example`
-- **Use `50_CONFIG/`**: Store all config in numbered directory
-- **Port from env**: Read `APP_PORT` from environment variable
-
-## Docker
-
-- **Health checks**: All services have Docker health checks
-- **Multi-stage builds**: Use multi-stage Dockerfiles
-- **Non-root user**: Run as node user in containers
-
-## Git
-
-- **Conventional commits**: `feat:`, `fix:`, `docs:`, `chore:`
-- **Small commits**: One logical change per commit
-- **Descriptive messages**: Explain the "why" not the "what"
-
-## Code Quality
-
-- **ESLint**: Fix all linting errors before committing
-- **Prettier**: Auto-format on save
-- **Husky hooks**: Run lint + tests pre-commit
-
-## Documentation
-
-- **ADRs**: Document all architectural decisions in `docs/decisions/`
-- **README**: Keep README up-to-date with setup instructions
-- **API docs**: Consider Swagger/OpenAPI for REST APIs
+# Project Standards
+- Windows 11 Pro, PowerShell-first
+- Names: ^[a-z0-9-]+$ ; no [] ()
+- Repo dirs: 10_DOCS/20_SRC/30_DATA/40_RUNTIME/50_CONFIG/99_ARCHIVE
+- Deliverables: filenames, tree, PS cmds, tests, /health, logging, metrics
+- Use pathlib (Python), minimal deps, show diffs for edits

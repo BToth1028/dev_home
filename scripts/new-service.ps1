@@ -6,11 +6,11 @@ param(
     [Parameter(Mandatory=$true)]
     [ValidateSet("starter-python-api", "starter-node-service")]
     [string]$Template,
-    
+
     [Parameter(Mandatory=$true)]
     [ValidatePattern("^[a-z0-9-]+$")]
     [string]$Name,
-    
+
     [Parameter(Mandatory=$false)]
     [int]$Port = 0
 )
@@ -77,7 +77,7 @@ Write-Host "Step 2/6: Scaffolding repo structure..." -ForegroundColor Cyan
 Write-Host "Step 3/6: Copying template..." -ForegroundColor Cyan
 Get-ChildItem -Path $templateSrc -Recurse | ForEach-Object {
     $targetPath = $_.FullName.Replace($templateSrc, $dest)
-    
+
     if ($_.PSIsContainer) {
         if (!(Test-Path $targetPath)) {
             New-Item -ItemType Directory -Path $targetPath -Force | Out-Null
@@ -86,6 +86,27 @@ Get-ChildItem -Path $templateSrc -Recurse | ForEach-Object {
         Copy-Item -Path $_.FullName -Destination $targetPath -Force
     }
 }
+
+# Ensure Cursor standards exist in the new repo
+New-Item -ItemType Directory (Join-Path $dest ".cursor\rules") -Force | Out-Null
+
+@"
+# Project Standards
+- Windows 11 Pro, PowerShell-first
+- Names: ^[a-z0-9-]+$ ; no [] ()
+- Repo dirs: 10_DOCS/20_SRC/30_DATA/40_RUNTIME/50_CONFIG/99_ARCHIVE
+- Deliverables: filenames, tree, PS cmds, tests, /health, logging, metrics
+- Use pathlib (Python), minimal deps, show diffs for edits
+"@ | Set-Content (Join-Path $dest ".cursor\rules\project-standards.mdc")
+
+@"
+30_DATA/
+40_RUNTIME/
+.env
+.env.*
+node_modules/
+__pycache__/
+"@ | Set-Content (Join-Path $dest ".cursorignore")
 
 # Step 4: Token replacement
 Write-Host "Step 4/6: Customizing configuration..." -ForegroundColor Cyan
@@ -102,11 +123,11 @@ Get-ChildItem -Path $dest -Recurse -File | Where-Object {
 } | ForEach-Object {
     $content = Get-Content $_.FullName -Raw -Encoding UTF8
     $modified = $content
-    
+
     foreach ($key in $replacements.Keys) {
         $modified = $modified -replace [regex]::Escape($key), $replacements[$key]
     }
-    
+
     if ($content -ne $modified) {
         Set-Content -Path $_.FullName -Value $modified -Encoding UTF8 -NoNewline
     }

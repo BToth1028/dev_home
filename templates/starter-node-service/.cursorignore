@@ -1,27 +1,6 @@
-# Dependencies
-node_modules/
-.venv/
-__pycache__/
-vendor/
-# Build artifacts
-dist/
-build/
-*.pyc
-*.o
-# Data & logs
-data/
-logs/
-*.csv
-*.parquet
-.cache/
-# Sensitive
+30_DATA/
+40_RUNTIME/
 .env
-secrets/
-*.key
-*.pem
-# Generated
-*.generated.*
-migrations/
-# Misc
-.DS_Store
-.eslintcache
+.env.*
+node_modules/
+__pycache__/
