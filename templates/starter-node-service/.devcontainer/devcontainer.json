@@ -1,0 +1,18 @@
+{
+  "name": "starter-node-service dev",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:1-22-bullseye",
+  "postCreateCommand": "npm ci && npm run prepare || true",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "editorconfig.editorconfig"
+      ]
+    }
+  },
+  "runArgs": [
+    "--env-file",
+    ".env"
+  ]
+}

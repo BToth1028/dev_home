@@ -1,0 +1,7 @@
+# Global Coding Standards
+
+- Prefer small modules and pure functions.
+- Keep files under ~300 lines when reasonable.
+- Tests near code; name tests descriptively.
+- Log with context; avoid swallowing errors.
+- Use env vars for config; no secrets in repo.

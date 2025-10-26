@@ -1,0 +1,106 @@
+# Documentation & Decision Recording Rules
+
+## File Naming Convention
+
+All documentation files MUST follow this pattern:
+```
+YYYY-MM-DD_descriptive-title.md
+```
+
+**Examples:**
+- ✅ `2025-10-26_setup-engineering-home.md`
+- ✅ `2025-11-03_postgres-connection-pooling.md`
+- ❌ `notes.md`
+- ❌ `doc1.txt`
+- ❌ `Untitled.md`
+
+## Decision Document Template
+
+Every significant decision or AI conversation summary MUST use this structure:
+
+```markdown
+# <Short Title>
+
+**Date:** <YYYY-MM-DD>  
+**Source:** <ChatGPT | Claude | Cursor | Manual>  
+**Context:** <1–2 lines explaining why this decision was made>
+
+---
+
+## Original Prompt
+> "<paste the original question or request>"
+
+---
+
+## Key Takeaways
+- <3–7 bullet points summarizing the main insights>
+
+---
+
+## Implementation Guide
+<step-by-step instructions, code snippets, commands, guardrails>
+
+---
+
+## Related
+- See also: ../<area>/<date>_<topic>.md
+- Related issue: #123
+- Related PR: #456
+```
+
+## Documentation Categories
+
+**Project-specific docs:** Go in the project repo under `docs/`
+- ADRs specific to one project
+- API documentation for one service
+- Setup guides for one app
+
+**Org-wide docs:** Go in engineering-home under `docs/`
+- Cross-project standards
+- Architecture decisions affecting multiple services
+- Shared infrastructure documentation
+- Team processes and workflows
+
+## When to Create a Decision Document
+
+Create a decision doc when:
+- Making architecture or technology choices
+- Establishing team standards or conventions
+- Receiving valuable AI-generated guidance worth preserving
+- Making reversible but significant decisions (document the rationale)
+- Onboarding needs historical context
+
+Skip decision docs for:
+- Trivial bug fixes
+- Routine maintenance
+- Self-evident changes
+- Temporary experiments
+
+## Best Practices
+
+1. **Update, don't duplicate:** If updating an old decision, append a "## Updates" section with date
+2. **Link related docs:** Always add "Related" section with cross-references
+3. **Be concise:** Aim for scannable bullet points over long paragraphs
+4. **Include examples:** Show concrete code/commands, not just abstract concepts
+5. **Date everything:** Every doc should have creation date and last-updated date
+
+## Organizing GPT Summaries
+
+1. Save to `docs/gpt-summaries/_inbox/` first
+2. Within 1 week, move to proper category:
+   - `architecture/` – System design, patterns
+   - `coding-patterns/` – Code organization, best practices
+   - `devops/` – Deployment, CI/CD, infrastructure
+
+## Cursor Integration
+
+When Cursor creates documentation:
+- Auto-apply the YYYY-MM-DD naming pattern
+- Use the decision template for AI conversations
+- Place in `_inbox/` if category is unclear
+- Add context headers (Date, Source, Context)
+
+---
+
+**Enforced by:** Cursor rules  
+**Last updated:** 2025-10-26

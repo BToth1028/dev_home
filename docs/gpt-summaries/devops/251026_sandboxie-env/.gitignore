@@ -1,0 +1,8 @@
+*.bak.*
+*.log
+*~
+
+# Sandboxie backups + logs
+Sandboxie.ini.bak.*
+*.sbiedump
+sandboxie-logs/

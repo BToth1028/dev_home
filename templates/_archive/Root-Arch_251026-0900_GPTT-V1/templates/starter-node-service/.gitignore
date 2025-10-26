@@ -1,0 +1,11 @@
+.env
+node_modules/
+dist/
+build/
+.DS_Store
+.idea/
+.vscode/
+logs/
+output/
+data/
+.cache/

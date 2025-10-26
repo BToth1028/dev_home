@@ -1,0 +1,5 @@
+# Node Template Rules
+- TypeScript strict, no default exports.
+- Keep controllers thin; move logic to services.
+- Use `pathHelper` to create data/log/cache dirs.
+- Add tests for new logic.

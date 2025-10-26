@@ -1,0 +1,22 @@
+# Engineering Home CODEOWNERS
+# These owners will be requested for review when someone opens a pull request.
+
+# Global fallback
+* @YOUR_GITHUB_USERNAME
+
+# Documentation
+/docs/ @YOUR_GITHUB_USERNAME
+/docs/architecture/decisions/ @YOUR_GITHUB_USERNAME
+
+# Templates (critical - require careful review)
+/templates/ @YOUR_GITHUB_USERNAME
+
+# Infrastructure
+/infra/ @YOUR_GITHUB_USERNAME
+
+# Cursor rules (affects all projects)
+/.cursor/ @YOUR_GITHUB_USERNAME
+
+# GitHub configuration
+/.github/ @YOUR_GITHUB_USERNAME
+

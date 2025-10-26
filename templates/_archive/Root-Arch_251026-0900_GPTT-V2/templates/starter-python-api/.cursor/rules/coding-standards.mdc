@@ -1,0 +1,5 @@
+# Python Template Rules
+- Format with Black; import sort with isort.
+- Keep FastAPI routes thin; put logic in services.
+- Use `path_helper` for data/log/cache dirs.
+- Add tests for new modules.

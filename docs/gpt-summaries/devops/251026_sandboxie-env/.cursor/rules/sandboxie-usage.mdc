@@ -1,0 +1,4 @@
+# Sandboxie Usage Rules for Cursor
+- Use named boxes: downloads-isolated, unknown-exe, browser-isolated, repo-tooling, git-tools.
+- Launch with Start.exe /box:<name> <program> [args...]
+- Do not sandbox Docker/devcontainers.
