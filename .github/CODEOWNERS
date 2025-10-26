@@ -1,22 +1,21 @@
-# Engineering Home CODEOWNERS
+# Engineering Home BToth1028
 # These owners will be requested for review when someone opens a pull request.
 
 # Global fallback
-* @YOUR_GITHUB_USERNAME
+* @BToth1028
 
 # Documentation
-/docs/ @YOUR_GITHUB_USERNAME
-/docs/architecture/decisions/ @YOUR_GITHUB_USERNAME
+/docs/ @YBToth1028
+/docs/architecture/decisions/ @YBToth1028
 
 # Templates (critical - require careful review)
-/templates/ @YOUR_GITHUB_USERNAME
+/templates/ @YBToth1028
 
 # Infrastructure
-/infra/ @YOUR_GITHUB_USERNAME
+/infra/ @YBToth1028
 
 # Cursor rules (affects all projects)
-/.cursor/ @YOUR_GITHUB_USERNAME
+/.cursor/ @YBToth1028
 
 # GitHub configuration
-/.github/ @YOUR_GITHUB_USERNAME
-
+/.github/ @YBToth1028
