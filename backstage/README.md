@@ -23,6 +23,7 @@ yarn dev
 Backstage is an open-source developer portal that provides:
 
 ### Core Features
+
 - **Service Catalog** - Centralized registry of all your services, libraries, and tools
 - **Software Templates** - Scaffolding for new services with best practices built-in
 - **TechDocs** - Documentation automatically built from markdown in your repos
@@ -120,10 +121,13 @@ To enable documentation for a service:
 
 1. Add `docs/` folder with `index.md`
 2. Add annotation to `catalog-info.yaml`:
+
+
    ```yaml
    annotations:
      backstage.io/techdocs-ref: dir:.
    ```
+
 3. Docs automatically build and appear in Backstage UI
 
 ### Software Templates
@@ -164,14 +168,14 @@ spec:
 
 ## Access
 
-- **Frontend:** http://localhost:3000
-- **Backend API:** http://localhost:7007
+- **Frontend:** <http://localhost:3000>
+- **Backend API:** <http://localhost:7007>
 - **First user becomes admin**
 - **Guest access enabled** in local dev
 
 ## File Structure
 
-```
+```text
 backstage/
 ├── app-config.yaml              # Base configuration
 ├── app-config.local.yaml        # Local overrides
@@ -251,6 +255,8 @@ yarn dev
 ### Port conflicts
 
 Edit `app-config.local.yaml`:
+
+
 ```yaml
 app:
   baseUrl: http://localhost:3001  # Change from 3000
@@ -259,6 +265,7 @@ backend:
 ```
 
 ### Catalog not discovering services
+
 
 1. Check catalog locations in `app-config.local.yaml`
 2. Verify `catalog-info.yaml` syntax (use YAML validator)
@@ -280,6 +287,8 @@ cat app-config.local.yaml | grep -A 5 techdocs
 ### Add GitHub Integration
 
 Edit `app-config.local.yaml`:
+
+
 ```yaml
 integrations:
   github:
@@ -301,10 +310,10 @@ Edit `packages/app/src/App.tsx` to change colors, logos, etc.
 
 ## Resources
 
-- **Official Docs:** https://backstage.io/docs
-- **Getting Started:** https://backstage.io/docs/getting-started
-- **Plugin Marketplace:** https://backstage.io/plugins
-- **Community:** https://discord.gg/backstage
+- **Official Docs:** <https://backstage.io/docs>
+- **Getting Started:** <https://backstage.io/docs/getting-started>
+- **Plugin Marketplace:** <https://backstage.io/plugins>
+- **Community:** <https://discord.gg/backstage>
 
 ## Related
 
