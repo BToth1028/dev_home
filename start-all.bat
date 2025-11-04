@@ -18,28 +18,33 @@ if %errorlevel% neq 0 (
     echo.
     start "" "C:\Program Files\Docker\Docker\Docker Desktop.exe"
     
-    echo   Waiting for Docker to start...
-    echo   (This takes 30-90 seconds - please be patient)
+    echo   Waiting 20 seconds for Docker to initialize...
+    timeout /t 20 /nobreak >nul
+    
+    echo   Now checking if Docker is ready...
     echo.
     
-    :: Wait for Docker to be ready (check every 5 seconds, up to 3 minutes)
+    :: Wait for Docker to be ready (check every 3 seconds, up to 2 minutes)
     set /a counter=0
     :wait_docker
-    timeout /t 5 /nobreak >nul
     set /a counter+=1
     
     docker info >nul 2>&1
     if %errorlevel% neq 0 (
-        if %counter% LSS 36 (
-            echo   Still waiting for Docker... (check %counter% of 36)
+        if %counter% LSS 40 (
+            echo   Check %counter% - Docker not ready yet...
+            timeout /t 3 /nobreak >nul
             goto wait_docker
         ) else (
             echo.
-            echo   ERROR: Docker Desktop did not start in time.
-            echo   Please start Docker Desktop manually and run this again.
+            echo   ERROR: Docker did not become ready in time.
             echo.
-            echo   Press any key to exit...
-            pause >nul
+            echo   Try these steps:
+            echo   1. Check if Docker Desktop icon appeared in system tray
+            echo   2. Wait for Docker Desktop to fully load
+            echo   3. Run this script again
+            echo.
+            pause
             exit /b 1
         )
     )
