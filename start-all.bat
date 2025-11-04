@@ -9,145 +9,182 @@ echo   Starting Project Context OS
 echo ================================================
 echo.
 
-:: Check if Docker Desktop is running
-echo [1/5] Checking Docker Desktop...
+:: Check prerequisites
+echo Checking prerequisites...
+echo.
+
+:: Check if yarn is installed
+where yarn >nul 2>&1
+if %errorlevel% neq 0 (
+    echo WARNING: Yarn is not installed!
+    echo Backstage requires Yarn to run.
+    echo.
+    echo Install with: npm install -g yarn
+    echo.
+    set YARN_MISSING=1
+) else (
+    echo [OK] Yarn is installed
+    set YARN_MISSING=0
+)
+
+:: Check if Python venv exists
+if exist "C:\DEV\.venv\Scripts\activate.bat" (
+    echo [OK] Python venv exists
+    set VENV_EXISTS=1
+) else (
+    echo WARNING: Python venv not found
+    echo MkDocs will be skipped.
+    echo.
+    set VENV_EXISTS=0
+)
+
+echo.
+
+:: Check if Docker is running
+echo Checking Docker status...
+docker info >nul 2>&1
+if %errorlevel% equ 0 (
+    echo [OK] Docker is already running!
+    goto start_services
+)
+
+:: Docker not running - start it
+echo Docker is not running. Starting it now...
+start "" "C:\Program Files\Docker\Docker\Docker Desktop.exe"
+echo.
+echo Waiting for Docker to be ready...
+echo (Checking every 3 seconds)
+echo.
+
+:: Check every 3 seconds until Docker is ready
+set /a counter=0
+:check_docker
+set /a counter+=1
+timeout /t 3 /nobreak >nul
+
 docker info >nul 2>&1
 if %errorlevel% neq 0 (
-    echo   Docker Desktop is not running.
-    echo   Starting Docker Desktop now...
+    echo   Check %counter%: Docker not ready yet...
+    if %counter% LSS 40 goto check_docker
     echo.
-    start "" "C:\Program Files\Docker\Docker\Docker Desktop.exe"
-    
-    echo   Waiting 20 seconds for Docker to initialize...
-    timeout /t 20 /nobreak >nul
-    
-    echo   Now checking if Docker is ready...
+    echo ERROR: Docker did not start after 2 minutes.
+    echo Please start Docker Desktop manually and run this again.
     echo.
-    
-    :: Wait for Docker to be ready (check every 3 seconds, up to 2 minutes)
-    set /a counter=0
-    :wait_docker
-    set /a counter+=1
-    
-    docker info >nul 2>&1
-    if %errorlevel% neq 0 (
-        if %counter% LSS 40 (
-            echo   Check %counter% - Docker not ready yet...
-            timeout /t 3 /nobreak >nul
-            goto wait_docker
-        ) else (
-            echo.
-            echo   ERROR: Docker did not become ready in time.
-            echo.
-            echo   Try these steps:
-            echo   1. Check if Docker Desktop icon appeared in system tray
-            echo   2. Wait for Docker Desktop to fully load
-            echo   3. Run this script again
-            echo.
-            pause
-            exit /b 1
-        )
-    )
-    echo.
-    echo   Docker Desktop is ready!
-) else (
-    echo   Docker Desktop is already running!
+    pause
+    exit /b 1
 )
+
+echo.
+echo [OK] Docker is ready!
+echo.
+
+:start_services
+echo ================================================
+echo   Starting Services
+echo ================================================
 echo.
 
 :: Start MkDocs
-echo [2/5] Starting MkDocs (Documentation Portal)...
-cd /d C:\DEV
-if exist ".venv\Scripts\activate.bat" (
-    start "MkDocs Server" cmd /k "cd /d C:\DEV && .venv\Scripts\activate.bat && mkdocs serve"
+if %VENV_EXISTS% equ 1 (
+    echo [1/4] Starting MkDocs...
+    start "MkDocs" cmd /k "cd C:\DEV && .venv\Scripts\activate.bat && mkdocs serve"
     timeout /t 2 /nobreak >nul
-    echo   Started: MkDocs on http://localhost:8000
+    echo   Started on http://localhost:8000
 ) else (
-    echo   Skipped: Python venv not found
+    echo [1/4] Skipping MkDocs (venv not found)
 )
 echo.
 
 :: Start Sourcegraph
-echo [3/5] Starting Sourcegraph (Code Search)...
-cd /d C:\DEV\sourcegraph
-if exist "docker-compose.yaml" (
-    start "Sourcegraph" cmd /k "docker compose up"
-    timeout /t 3 /nobreak >nul
-    echo   Started: Sourcegraph on http://localhost:7080
-    echo   (Takes 2-3 minutes to fully start)
+echo [2/4] Starting Sourcegraph...
+if exist "C:\DEV\sourcegraph\docker-compose.yaml" (
+    start "Sourcegraph" cmd /k "cd C:\DEV\sourcegraph && docker compose up"
+    timeout /t 2 /nobreak >nul
+    echo   Started on http://localhost:7080
 ) else (
-    echo   Skipped: Sourcegraph config not found
+    echo   WARNING: docker-compose.yaml not found
 )
 echo.
 
 :: Start Structurizr
-echo [4/5] Starting Structurizr (Architecture Diagrams)...
-cd /d C:\DEV\docs\architecture\c4
-if exist "workspace.dsl" (
-    start "Structurizr" cmd /k "docker run -it --rm -p 8081:8080 -v %cd%:/usr/local/structurizr structurizr/lite"
-    timeout /t 3 /nobreak >nul
-    echo   Started: Structurizr on http://localhost:8081
+echo [3/4] Starting Structurizr...
+if exist "C:\DEV\docs\architecture\c4\workspace.dsl" (
+    start "Structurizr" cmd /k "cd C:\DEV\docs\architecture\c4 && docker run -it --rm -p 8081:8080 -v %cd%:/usr/local/structurizr structurizr/lite"
+    timeout /t 2 /nobreak >nul
+    echo   Started on http://localhost:8081
 ) else (
-    echo   Skipped: Structurizr DSL not found
+    echo   WARNING: workspace.dsl not found
 )
 echo.
 
 :: Start Backstage
-echo [5/5] Starting Backstage (Service Catalog)...
-cd /d C:\DEV\backstage
-if exist "package.json" (
-    start "Backstage" cmd /k "yarn dev"
-    timeout /t 3 /nobreak >nul
-    echo   Started: Backstage on http://localhost:7007
+if %YARN_MISSING% equ 0 (
+    echo [4/4] Starting Backstage...
+    if exist "C:\DEV\backstage\package.json" (
+        start "Backstage" cmd /k "cd C:\DEV\backstage && yarn dev"
+        timeout /t 2 /nobreak >nul
+        echo   Started on http://localhost:7007
+    ) else (
+        echo   WARNING: Backstage not found
+    )
 ) else (
-    echo   Skipped: Backstage not found
+    echo [4/4] Skipping Backstage (Yarn not installed)
+    echo   To install Yarn: npm install -g yarn
 )
 echo.
 
 :: Summary
-echo.
 echo ================================================
-echo   All Services Started!
+echo   Startup Complete!
 echo ================================================
 echo.
-echo   4 Terminal Windows Opened:
-echo   - MkDocs Server
-echo   - Sourcegraph  
-echo   - Structurizr
-echo   - Backstage
+echo Services Running:
+if %VENV_EXISTS% equ 1 (
+    echo   - MkDocs:      http://localhost:8000
+)
+echo   - Sourcegraph: http://localhost:7080 (takes 2-3 min)
+echo   - Structurizr: http://localhost:8081
+if %YARN_MISSING% equ 0 (
+    echo   - Backstage:   http://localhost:7007
+)
 echo.
-echo   Do NOT close those windows!
-echo   Services run in those separate windows.
+echo Check the other terminal windows for service output.
+echo Do NOT close those windows!
 echo.
-echo   Wait 60-90 seconds for everything to be ready, then open:
-echo.
-echo   - Documentation:   http://localhost:8000
-echo   - Service Catalog: http://localhost:7007
-echo   - Code Search:     http://localhost:7080  (slowest)
-echo   - Architecture:    http://localhost:8081
-echo.
+
+:: Show fixes if needed
+if %YARN_MISSING% equ 1 (
+    echo.
+    echo TO FIX BACKSTAGE:
+    echo   npm install -g yarn
+    echo.
+)
+
+if %VENV_EXISTS% equ 0 (
+    echo.
+    echo TO FIX MKDOCS:
+    echo   cd C:\DEV
+    echo   python -m venv .venv
+    echo   .venv\Scripts\pip install mkdocs-material
+    echo.
+)
 
 :: Ask if user wants to open browsers
 set /p OPEN_BROWSERS="Open all portals in browser? (y/n): "
 if /i "%OPEN_BROWSERS%"=="y" (
     echo.
-    echo Opening browsers in 15 seconds...
-    timeout /t 15 /nobreak >nul
-    start http://localhost:8000
-    timeout /t 2 /nobreak >nul
-    start http://localhost:7007
-    timeout /t 2 /nobreak >nul
+    echo Opening browsers in 10 seconds...
+    timeout /t 10 /nobreak >nul
+    if %VENV_EXISTS% equ 1 start http://localhost:8000
+    timeout /t 1 /nobreak >nul
+    if %YARN_MISSING% equ 0 start http://localhost:7007
+    timeout /t 1 /nobreak >nul
     start http://localhost:7080
-    timeout /t 2 /nobreak >nul
+    timeout /t 1 /nobreak >nul
     start http://localhost:8081
     echo   Browsers opened!
 )
 
 echo.
-echo ================================================
-echo   Ready!
-echo ================================================
-echo.
-echo   This window will close in 5 seconds...
-echo.
+echo This window will close in 5 seconds...
 timeout /t 5 /nobreak >nul
