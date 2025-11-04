@@ -55,3 +55,7 @@ $RECYCLE.BIN/
 
 # Scratch/experiments (throwaway code)
 scratch/
+
+# Data directories (large files, generated content)
+data/
+site/
