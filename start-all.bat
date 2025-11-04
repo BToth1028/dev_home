@@ -45,6 +45,11 @@ echo Checking Docker status...
 docker info >nul 2>&1
 if %errorlevel% equ 0 (
     echo [OK] Docker is already running!
+    echo.
+    echo Cleaning up any previous containers...
+    docker stop structurizr-lite 2>nul
+    docker rm structurizr-lite 2>nul
+    echo Done.
     goto start_services
 )
 
@@ -109,7 +114,7 @@ echo.
 :: Start Structurizr
 echo [3/4] Starting Structurizr...
 if exist "C:\DEV\docs\architecture\c4\workspace.dsl" (
-    start "Structurizr" cmd /k "cd C:\DEV\docs\architecture\c4 && docker run -it --rm -p 8081:8080 -v %cd%:/usr/local/structurizr structurizr/lite"
+    start "Structurizr" cmd /k "cd C:\DEV\docs\architecture\c4 && docker run -it --rm --name structurizr-lite -p 8081:8080 -v %cd%:/usr/local/structurizr structurizr/lite"
     timeout /t 2 /nobreak >nul
     echo   Started on http://localhost:8081
 ) else (
