@@ -1,0 +1,12 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: engineering-home
+  description: Project Context OS - Complete engineering workspace
+  tags:
+    - platform
+    - documentation
+spec:
+  type: service
+  lifecycle: production
+  owner: guest

@@ -11,14 +11,14 @@ $ErrorActionPreference = "Stop"
 
 Write-Host "Scaffolding repo structure at: $Path" -ForegroundColor Cyan
 
-# Standard numbered directories (easy sorting, clear purpose)
+# Standard directories
 $dirs = @(
-    "10_DOCS",
-    "20_SRC", 
-    "30_DATA",
-    "40_RUNTIME",
-    "50_CONFIG",
-    "99_ARCHIVE",
+    "docs",
+    "src",
+    "tests",
+    "config",
+    "data",
+    "runtime",
     "docs/decisions",
     ".cursor/rules"
 )
@@ -81,10 +81,10 @@ __pycache__/
 *.pyo
 
 # Runtime
-40_RUNTIME/*
-!40_RUNTIME/.gitkeep
-30_DATA/*
-!30_DATA/.gitkeep
+runtime/*
+!runtime/.gitkeep
+data/*
+!data/.gitkeep
 
 # IDE
 .vscode/
@@ -108,8 +108,8 @@ Set-Content -Path (Join-Path $Path ".gitignore") -Value $gitignore -Encoding UTF
 $initDecision = @"
 # Initial Repo Setup
 
-**Date:** $(Get-Date -Format yyyy-MM-dd)  
-**Source:** Internal template  
+**Date:** $(Get-Date -Format yyyy-MM-dd)
+**Source:** Internal template
 **Context:** New service created via new-service.ps1
 
 ---
@@ -122,7 +122,7 @@ Created via: ``new-service.ps1 -Template <template> -Name <name>``
 
 ## Key Takeaways
 
-- Standardized directory structure (numbered for clarity)
+- Standardized directory structure: docs/src/tests/config/data/runtime
 - Health endpoint included
 - Tests included
 - DevContainer support
@@ -146,10 +146,9 @@ See README.md for usage instructions.
 Set-Content -Path (Join-Path $Path "docs/decisions/$(Get-Date -Format yyyy-MM-dd)_init.md") -Value $initDecision -Encoding UTF8
 
 # Create .gitkeep files for empty directories
-@("30_DATA", "40_RUNTIME") | ForEach-Object {
+@("data", "runtime") | ForEach-Object {
     $keepPath = Join-Path $Path "$_\.gitkeep"
     New-Item -ItemType File -Path $keepPath -Force | Out-Null
 }
 
 Write-Host "✓ Scaffolding complete!" -ForegroundColor Green
-

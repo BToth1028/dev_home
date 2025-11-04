@@ -1,0 +1,239 @@
+# Project Standards - Engineering Home (C:\DEV)
+
+## Environment
+- **OS**: Windows 11 Pro
+- **Shell**: PowerShell-first (all scripts, commands, examples)
+- **Python**: 3.11+ with modern features (match/case, type hints)
+- **Node**: LTS version for Node services
+
+## File Naming Convention
+**Pattern**: `^[a-z0-9-]+$` (lowercase, alphanumeric, hyphens only)
+
+Examples:
+- ✅ `user-service.py`
+- ✅ `api-handler.ts`
+- ✅ `test-auth.py`
+- ❌ `User_Service.py` (underscore)
+- ❌ `api[v2].ts` (brackets)
+- ❌ `Handler(old).js` (parens)
+
+## Directory Structure (Required)
+Every service/app/lib must have:
+```
+project-name/
+├── docs/          # All documentation
+│   ├── decisions/ # ADRs (Architecture Decision Records)
+│   └── README.md
+├── src/           # Source code only
+├── tests/         # All test files (prefix: test_*)
+├── config/        # Config templates (.env.example, .yaml)
+├── data/          # Persistent data (gitignored)
+└── runtime/       # Runtime files: logs, pids (gitignored)
+```
+
+## Python Standards
+
+### Imports & Dependencies
+- Use `pathlib.Path` for ALL file operations (not `os.path`)
+- Minimal dependencies - justify each in README
+- Type hints on all functions
+
+Example:
+```python
+from pathlib import Path
+from typing import Optional
+
+def read_config(config_dir: Path = Path("config")) -> dict:
+    config_file = config_dir / "settings.yaml"
+    if not config_file.exists():
+        raise FileNotFoundError(f"Config not found: {config_file}")
+    return yaml.safe_load(config_file.read_text())
+```
+
+### Code Style
+- Functional programming style when possible
+- Clean, direct code - avoid deep nesting
+- NO comments unless specifically requested
+- Use tabs for indentation
+
+## PowerShell Standards
+
+### Script Structure
+All PowerShell scripts must:
+- Set `$ErrorActionPreference = "Stop"`
+- Include usage examples in comments
+- Use approved verbs (Get-, Set-, New-, etc.)
+- Handle errors explicitly
+
+Example:
+```powershell
+# Get-ServiceStatus.ps1
+# Usage: .\Get-ServiceStatus.ps1 -ServiceName "myapp"
+
+param(
+    [Parameter(Mandatory=$true)]
+    [string]$ServiceName
+)
+
+$ErrorActionPreference = "Stop"
+
+try {
+    $status = docker ps --filter "name=$ServiceName" --format "{{.Status}}"
+    if ($status) {
+        Write-Host "✅ $ServiceName is running" -ForegroundColor Green
+    } else {
+        Write-Host "❌ $ServiceName is not running" -ForegroundColor Red
+        exit 1
+    }
+}
+catch {
+    Write-Host "Error: $_" -ForegroundColor Red
+    exit 1
+}
+```
+
+## Required Deliverables (ALL services)
+
+### 1. File Tree in README
+Include output of `tree /F` command:
+```
+README.md example:
+## File Structure
+```
+project-name/
+├── src/
+│   ├── app.py
+│   └── handler.py
+├── tests/
+│   └── test_app.py
+└── README.md
+```
+```
+
+### 2. PowerShell Commands
+All setup/run commands must be PowerShell:
+```powershell
+# Setup
+docker-compose up -d
+pip install -r requirements.txt
+
+# Run
+python src/app.py
+
+# Test
+pytest tests/
+```
+
+### 3. Automated Tests
+- Minimum: basic smoke tests
+- Test files: `tests/test_*.py` or `tests/*.test.ts`
+- Include in CI/CD pipeline
+- Coverage target: >70%
+
+### 4. Health Endpoint
+All APIs must expose `/health`:
+```python
+@app.route('/health', methods=['GET'])
+def health():
+    return jsonify({
+        'status': 'healthy',
+        'service': 'my-service',
+        'timestamp': datetime.now().isoformat()
+    }), 200
+```
+
+### 5. Structured Logging
+Log to `runtime/logs/` with rotation:
+```python
+import logging
+from pathlib import Path
+
+log_dir = Path("runtime/logs")
+log_dir.mkdir(parents=True, exist_ok=True)
+
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s [%(levelname)s] %(name)s: %(message)s',
+    handlers=[
+        logging.FileHandler(log_dir / "app.log"),
+        logging.StreamHandler()
+    ]
+)
+```
+
+### 6. Basic Metrics
+Track: requests, errors, latency
+```python
+# Simple counters
+request_count = 0
+error_count = 0
+
+@app.route('/metrics')
+def metrics():
+    return {
+        'requests': request_count,
+        'errors': error_count,
+        'uptime_seconds': time.time() - start_time
+    }
+```
+
+## SQL Standards
+- Keywords in UPPERCASE: `SELECT`, `FROM`, `WHERE`, `JOIN`
+- Prefer INNER JOIN with clear parentheses
+- Use `""` (empty string) instead of NULL where possible
+- **ALWAYS rewrite full query when making changes** (no fragments)
+
+Example:
+```sql
+SELECT u.id, u.name, o.total
+FROM users u
+INNER JOIN orders o ON (u.id = o.user_id)
+WHERE u.status = "active" AND o.total > 0
+ORDER BY o.created_at DESC
+LIMIT 10;
+```
+
+## Git Workflow
+- **Commit format**: `<type>: <description>`
+  - Types: `feat`, `fix`, `docs`, `refactor`, `test`, `chore`
+  - Example: `feat: add health endpoint`
+- **Branch naming**: `feature/xyz`, `fix/xyz`, `docs/xyz`
+- **NEVER** force push to `main` or `master`
+- **NEVER** skip hooks (--no-verify) unless explicitly needed
+
+## Code Style Principles
+- Functional programming style when possible
+- Clean, direct code (avoid unnecessary nesting)
+- **NO comments** unless specifically requested
+- Show diffs when editing (not full rewrites)
+- Tabs for indentation (or spaces if project specifies)
+
+## JavaScript/TypeScript Standards
+- Prefer `async/await` over callbacks/promises
+- Use TypeScript for type safety
+- Functional style: pure functions, immutability
+
+Example:
+```typescript
+async function fetchUser(id: string): Promise<User | null> {
+    try {
+        const response = await fetch(`/api/users/${id}`);
+        if (!response.ok) return null;
+        return await response.json();
+    } catch (error) {
+        console.error('Failed to fetch user:', error);
+        return null;
+    }
+}
+```
+
+## Template Usage
+- Python APIs: `templates/starter-python-api/`
+- Node services: `templates/starter-node-service/`
+- Copy and customize for new services
+
+## References
+- **Git workflow**: `docs/standards/git-workflow.md`
+- **Docker commands**: `docs/reference/docker-commands.md`
+- **Sandboxie integration**: `infra/windows/sandboxie-integration/`
+- **Architecture decisions**: `docs/architecture/decisions/`

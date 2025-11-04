@@ -1,0 +1,40 @@
+# Cursor Hot Context Builder Configuration
+# Research-validated settings for optimal retrieval
+
+# Source files to index (relative to repo root)
+sources:
+  - docs/standards
+  - docs/architecture
+  - docs/architecture/decisions
+  - README.md
+
+# Qdrant collection name
+collection: cursor_hot_context
+
+# Service URLs (Docker defaults)
+qdrant_url: http://localhost:6333
+ollama_url: http://localhost:11434/api/embed
+
+# Embedding model (nomic-embed-text is optimized for code/docs)
+embedding_model: nomic-embed-text
+embedding_dim: 768
+
+# Chunking parameters (research-based)
+chunk_size: 1000          # Target size (800-1200 range optimal)
+chunk_overlap: 120        # ~12% overlap maintains context
+min_chunk_size: 200       # Discard fragments
+
+# Retrieval parameters (research-validated)
+top_k: 12                 # Top chunks to include (8-12 optimal)
+relevance_threshold: 0.7  # Filter low-quality results
+
+# Output constraints (Cursor best practices)
+max_output_kb: 12         # Keep context file small
+max_lines: 500            # ~500 lines recommended
+
+# Queries for context generation (customize for your needs)
+queries:
+  - project standards and coding conventions
+  - recent architecture decisions
+  - directory structure and file organization
+  - testing patterns and requirements

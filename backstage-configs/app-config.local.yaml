@@ -1,0 +1,56 @@
+app:
+  title: Engineering Home
+  baseUrl: http://localhost:7007
+
+organization:
+  name: Engineering Team
+
+backend:
+  baseUrl: http://localhost:7007
+  listen:
+    port: 7007
+  csp:
+    connect-src: ["'self'", 'http:', 'https:']
+  cors:
+    origin: http://localhost:7007
+    methods: [GET, HEAD, PATCH, POST, PUT, DELETE]
+    credentials: true
+  database:
+    client: better-sqlite3
+    connection: ':memory:'
+
+integrations:
+  github:
+    - host: github.com
+
+techdocs:
+  builder: 'local'
+  generator:
+    runIn: 'local'
+  publisher:
+    type: 'local'
+
+auth:
+  environment: development
+  providers:
+    guest:
+      dangerouslyAllowOutsideDevelopment: true
+
+catalog:
+  import:
+    entityFilename: catalog-info.yaml
+    pullRequestBranchName: backstage-integration
+  rules:
+    - allow: [Component, System, API, Resource, Location, Domain]
+  locations:
+    - type: file
+      target: ../backstage/catalog-info.yaml
+    - type: file
+      target: ../apps/*/catalog-info.yaml
+    - type: file
+      target: ../libs/*/catalog-info.yaml
+    - type: file
+      target: ../tools/*/catalog-info.yaml
+
+permission:
+  enabled: false

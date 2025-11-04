@@ -25,15 +25,15 @@ New-Item -ItemType Directory .cursor\rules -Force | Out-Null
 # Project Standards
 - Windows 11 Pro, PowerShell-first
 - Names: ^[a-z0-9-]+$ ; no [] ()
-- Repo dirs: 10_DOCS/20_SRC/30_DATA/40_RUNTIME/50_CONFIG/99_ARCHIVE
+- Repo dirs: docs/src/tests/config/data/runtime
 - Deliverables: filenames, tree, PS cmds, tests, /health, logging, metrics
 - Use pathlib (Python), minimal deps, show diffs for edits
 "@ | Set-Content .cursor\rules\project-standards.mdc
 
 # 3) Add .cursorignore at repo root
 @"
-30_DATA/
-40_RUNTIME/
+data/
+runtime/
 .env
 .env.*
 node_modules/
@@ -56,9 +56,9 @@ cd C:\dev\apps\my-service
 # set up
 py -m venv .venv; .\.venv\Scripts\Activate.ps1
 pip install -r requirements.txt
-Copy-Item 50_CONFIG\.env.example 50_CONFIG\.env -Force
+Copy-Item config\.env.example .env -Force
 # run service
-$env:PORT=8000; python .\20_SRC\app.py
+$env:PYTHONPATH="src"; python .\src\app.py
 # in a new terminal:
 Invoke-WebRequest http://localhost:8000/health | % Content
 # tests
@@ -70,7 +70,7 @@ pytest -q
 ```powershell
 cd C:\dev\apps\my-service
 corepack enable; pnpm i
-Copy-Item 50_CONFIG\.env.example 50_CONFIG\.env -Force
+Copy-Item config\.env.example .env -Force
 # run service (adjust script name if needed)
 pnpm dev
 # in a new terminal:

@@ -1,0 +1,51 @@
+name: deps-maps
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'src/**'
+      - '**/*.py'
+      - 'package.json'
+      - 'pyproject.toml'
+      - 'requirements.txt'
+  workflow_dispatch:
+
+jobs:
+  generate:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Generate TypeScript deps
+        run: |
+          npm ci || npm i -D dependency-cruiser
+          if (Test-Path "src") {
+            npx depcruise --include-only "src" --output-type dot src > docs/architecture/ts-deps.dot
+          }
+        continue-on-error: true
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Generate Python deps
+        run: |
+          pip install pydeps
+          if (Test-Path "src") {
+            pydeps --max-bacon 2 --noshow --output docs/architecture/py-deps.svg .
+          }
+        continue-on-error: true
+
+      - name: Commit updated graphs
+        uses: EndBug/add-and-commit@v9
+        with:
+          add: 'docs/architecture/*-deps.*'
+          message: 'chore(docs): update dependency graphs [skip ci]'
+          default_author: github_actions

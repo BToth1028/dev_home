@@ -1,0 +1,114 @@
+# Project Context OS — Enterprise Edition
+
+## Objective
+Stand up a durable Project Context OS that gives full-repo and cross-repo visibility: docs portal, decision log, architecture model, dependency maps, search, and service catalog.
+
+## Non-negotiables
+- Enterprise first. No quick fixes.
+- SSO via OIDC. Least privilege RBAC.
+- Everything in Git. IaC for infra. Reproducible local dev.
+- CI/CD with policy checks. Required reviews. Signed artifacts.
+- Observability: logs, metrics, traces, uptime SLOs.
+- Backups, DR, and data retention defined.
+
+## Core components
+- Developer portal: Backstage
+- Code intelligence: Sourcegraph
+- Architecture model: Structurizr DSL + Structurizr Lite
+- Docs hub: MkDocs Material with search and Mermaid
+- Dependency maps: dependency-cruiser for TS, pydeps for Python
+- Decision log: ADRs in docs/architecture/decisions
+
+## Repo structure
+
+```
+C:\DEV\
+├── .cursor/rules/
+│   └── project-context-os-enterprise.mdc
+├── docs/
+│   ├── index.md
+│   ├── architecture/
+│   │   ├── README.md
+│   │   ├── c4/workspace.dsl
+│   │   └── decisions/
+├── backstage/
+├── sourcegraph/
+├── services/
+├── scripts/
+│   ├── new-adr.ps1
+│   ├── gen-ts-deps.ps1
+│   ├── gen-py-deps.ps1
+│   ├── gen-structure.ps1
+│   ├── up.ps1
+│   ├── down.ps1
+│   ├── smoke.ps1
+│   └── backup-sourcegraph.ps1
+├── mkdocs.yml
+├── package.json
+├── STRUCTURE.md
+└── .github/workflows/
+```
+
+## Naming rules
+- Filenames and service names must match `^[a-z0-9-]+$`
+- No spaces, no underscores, no brackets
+
+## Quick commands
+
+**Start systems:**
+```powershell
+.\scripts\up.ps1 -all
+```
+
+**Create ADR:**
+```powershell
+.\scripts\new-adr.ps1 "Decision title"
+```
+
+**Generate dependency graphs:**
+```powershell
+.\scripts\gen-ts-deps.ps1
+.\scripts\gen-py-deps.ps1
+```
+
+**Health check:**
+```powershell
+.\scripts\smoke.ps1
+```
+
+**Update structure:**
+```powershell
+.\scripts\gen-structure.ps1
+```
+
+## Acceptance criteria
+- Backstage reachable with SSO
+- Sourcegraph indexed and searchable for all repos
+- MkDocs builds clean with strict mode
+- Structurizr Lite renders the DSL
+- Dependency graphs generated on CI and visible under docs
+- Security workflows green. Branch protection enforced
+
+## Cursor usage rules
+- Prefer PowerShell for local scripts
+- When adding files, respect the naming regex
+- For any change, update docs/_CREATED_TODAY.md
+- For notable decisions, create ADR in docs/architecture/decisions/
+
+## Health and observability
+- Every service exposes /health and /ready
+- Add synthetic checks in Backstage
+- Use polling with backoff and caps
+- Standardize OpenTelemetry SDK in services
+- Ship logs to central sink with JSON format and request IDs
+
+## Security
+- SSO for Backstage and Sourcegraph
+- Branch protection, required reviews, status checks
+- Dependabot enabled. CodeQL weekly
+- Secrets from CI via OIDC
+
+## Backups and DR
+- Nightly backup for Sourcegraph data store
+- Docs are Git. No extra backup needed
+- Export Structurizr workspace daily to Git

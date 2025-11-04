@@ -1,6 +1,6 @@
 # Project Standards
 - Windows 11 Pro, PowerShell-first
 - Names: ^[a-z0-9-]+$ ; no [] ()
-- Repo dirs: 10_DOCS/20_SRC/30_DATA/40_RUNTIME/50_CONFIG/99_ARCHIVE
+- Repo dirs: docs/src/tests/config/data/runtime
 - Deliverables: filenames, tree, PS cmds, tests, /health, logging, metrics
 - Use pathlib (Python), minimal deps, show diffs for edits

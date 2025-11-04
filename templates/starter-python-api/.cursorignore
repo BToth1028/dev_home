@@ -1,5 +1,5 @@
-30_DATA/
-40_RUNTIME/
+data/
+runtime/
 .env
 .env.*
 node_modules/

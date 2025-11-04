@@ -1,0 +1,1675 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Project Context OS - Complete engineering workspace documentation">
+      
+      
+        <meta name="author" content="Engineering Team">
+      
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
+    
+    
+      
+        <title>C:\dev Structure - Complete Overview for Review - Engineering Home</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.84d31ad4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#cdev-structure-complete-overview-for-review" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Engineering Home" class="md-header__button md-logo" aria-label="Engineering Home" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Engineering Home
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              C:\dev Structure - Complete Overview for Review
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../QUICK_START/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Quick Start
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+  Architecture
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../reference/" class="md-tabs__link">
+          
+  
+  
+  Reference
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../research/" class="md-tabs__link">
+          
+  
+  
+  Research
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../standards/" class="md-tabs__link">
+          
+  
+  
+  Standards
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../gpt-summaries/" class="md-tabs__link">
+          
+  
+  
+  GPT Summaries
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Engineering Home" class="md-nav__button md-logo" aria-label="Engineering Home" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Engineering Home
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../QUICK_START/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Quick Start
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Architecture
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Architecture
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Decisions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../c4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    C4 Model
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Reference
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/git-commands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Git Commands
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/docker-commands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Docker Commands
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Research
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Research
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../research/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Standards
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Standards
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/git-workflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Git Workflow
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    GPT Summaries
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            GPT Summaries
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gpt-summaries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#quick-stats" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Quick Stats
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#top-level-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      🗂️ Top-Level Structure
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docs-knowledge-base" class="md-nav__link">
+    <span class="md-ellipsis">
+      📚 DOCS/ - Knowledge Base
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#infra-infrastructure-tooling" class="md-nav__link">
+    <span class="md-ellipsis">
+      🏗️ INFRA/ - Infrastructure Tooling
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#templates-starter-kits" class="md-nav__link">
+    <span class="md-ellipsis">
+      📦 TEMPLATES/ - Starter Kits
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#support-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 Support Files
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔧 Support Files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#root-level" class="md-nav__link">
+    <span class="md-ellipsis">
+      Root Level
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#design-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 Design Principles
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🎯 Design Principles">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-separation-of-concerns" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Separation of Concerns
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-consistent-naming" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Consistent Naming
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-ai-first" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. AI-First
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-docker-first" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Docker-First
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-documentation-first" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Documentation-First
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#status-by-component" class="md-nav__link">
+    <span class="md-ellipsis">
+      📈 Status by Component
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps-planned" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 Next Steps (Planned)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚀 Next Steps (Planned)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#immediate" class="md-nav__link">
+    <span class="md-ellipsis">
+      Immediate
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#short-term" class="md-nav__link">
+    <span class="md-ellipsis">
+      Short-term
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#long-term" class="md-nav__link">
+    <span class="md-ellipsis">
+      Long-term
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#questions-for-review" class="md-nav__link">
+    <span class="md-ellipsis">
+      ❓ Questions for Review
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-features-to-highlight" class="md-nav__link">
+    <span class="md-ellipsis">
+      💡 Key Features to Highlight
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="💡 Key Features to Highlight">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-complete-knowledge-base" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Complete Knowledge Base
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-production-ready-templates" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Production-Ready Templates
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-security-tooling" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Security Tooling
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-developer-experience" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Developer Experience
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#areas-for-improvement" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔍 Areas for Improvement
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔍 Areas for Improvement">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#potential-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Potential Issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recommendations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recommendations
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#complete-file-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      📝 Complete File Tree
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="cdev-structure-complete-overview-for-review">C:\dev Structure - Complete Overview for Review<a class="headerlink" href="#cdev-structure-complete-overview-for-review" title="Permanent link">&para;</a></h1>
+<p><strong>Date:</strong> 2025-10-26
+<strong>Purpose:</strong> Review of complete development workspace structure
+<strong>Context:</strong> Organized engineering workspace with templates, infrastructure, and documentation</p>
+<hr />
+<h2 id="quick-stats">📊 Quick Stats<a class="headerlink" href="#quick-stats" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Total Directories:</strong> 4 main (docs, infra, templates, + support)</li>
+<li><strong>Templates:</strong> 2 production-ready (Node + Python)</li>
+<li><strong>Infrastructure:</strong> Sandboxie integration (Windows security)</li>
+<li><strong>Documentation:</strong> Complete knowledge base system</li>
+<li><strong>Support Files:</strong> Git, Cursor, GitHub configs</li>
+</ul>
+<hr />
+<h2 id="top-level-structure">🗂️ Top-Level Structure<a class="headerlink" href="#top-level-structure" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>C:\dev\
+├── .cursor/              # Cursor AI rules
+├── .github/              # GitHub templates (CODEOWNERS, PR, Issues)
+├── .vscode/              # VS Code settings (terminal config)
+├── docs/                 # Documentation &amp; knowledge base
+├── infra/                # Infrastructure tooling
+├── templates/            # Starter templates
+├── README.md             # Main project overview
+├── NEXT_STEPS.md         # Current roadmap
+└── engineering-home.code-workspace  # VS Code workspace
+</code></pre></div>
+<hr />
+<h2 id="docs-knowledge-base">📚 DOCS/ - Knowledge Base<a class="headerlink" href="#docs-knowledge-base" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>docs/
+├── README.md                    # Docs overview
+├── QUICK_START.md               # Quick reference
+├── _CREATED_TODAY.md            # Setup log
+│
+├── reference/                   # Quick lookups
+│   ├── git-commands.md
+│   ├── docker-commands.md
+│   └── README.md
+│
+├── research/                    # Deep dives
+│   ├── api-frameworks/
+│   ├── cursor-best-practices/
+│   ├── database-comparison/
+│   ├── template-architecture/
+│   └── README.md
+│
+├── gpt-summaries/               # AI-generated content
+│   ├── architecture/
+│   ├── coding-patterns/
+│   ├── devops/
+│   │   └── 2025-10-26_sandboxie-research.md
+│   ├── _inbox/
+│   ├── _TEMPLATE.md
+│   └── README.md
+│
+├── standards/                   # Coding standards
+│   ├── git-workflow.md
+│   └── README.md
+│
+├── architecture/                # System architecture
+│   ├── diagrams/
+│   ├── decisions/
+│   │   ├── 2025-10-26_setup-engineering-home.md
+│   │   └── YYYY-MM-DD_template.md
+│   └── README.md
+│
+└── meetings/                    # Meeting notes
+    └── README.md
+</code></pre></div>
+<p><strong>Purpose:</strong> Permanent knowledge base
+<strong>File Naming:</strong> <code>YYYY-MM-DD_descriptive-title.md</code>
+<strong>Organization:</strong> By type (reference, research, summaries, standards)</p>
+<hr />
+<h2 id="infra-infrastructure-tooling">🏗️ INFRA/ - Infrastructure Tooling<a class="headerlink" href="#infra-infrastructure-tooling" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>infra/
+├── README.md
+│
+├── sandboxie/                   # Legacy (old location)
+│   ├── boxes/
+│   ├── scripts/windows/
+│   ├── README.md
+│   ├── SANDBOXIE_INTEGRATION.md
+│   └── USAGE_EXAMPLES.md
+│
+└── windows/
+    └── sandboxie-integration/   # Current production location
+        ├── README.md
+        ├── CHANGELOG.md
+        ├── USAGE_EXAMPLES.md
+        ├── V1.0_RELEASE_NOTES.md
+        ├── _REVIEW_SUMMARY.md
+        ├── _FILE_AUDIT.md
+        ├── .gitignore
+        │
+        ├── .cursor/rules/
+        │   └── sandboxie-usage.mdc
+        │
+        ├── docs/
+        │   ├── SANDBOXIE_INTEGRATION.md (400+ lines)
+        │   └── decisions/
+        │       └── 2025-10-26_sandboxie-followups.md
+        │
+        ├── sandboxie/boxes/
+        │   ├── browser-isolated.ini
+        │   ├── downloads-isolated.ini
+        │   ├── git-tools.ini
+        │   ├── repo-tooling.ini
+        │   ├── unknown-exe.ini
+        │   └── overlays/
+        │       └── unknown-exe_network-strict.ini
+        │
+        ├── scripts/windows/
+        │   ├── install-sandboxie-config.ps1
+        │   ├── uninstall-sandboxie-config.ps1
+        │   ├── run-in-box.ps1
+        │   ├── clean-all-boxes.ps1
+        │   ├── schedule-cleanup.ps1
+        │   ├── unschedule-cleanup.ps1
+        │   ├── launch-dialog.ps1
+        │   ├── force-folders.ps1
+        │   ├── make-shortcuts.ps1
+        │   ├── Open-Browser-Isolated.cmd
+        │   ├── Run-In-Box.cmd
+        │   └── Clean-Downloads-Box.cmd
+        │
+        ├── RUN_TESTS.cmd
+        ├── TEST_SUITE.ps1
+        └── TESTING_GUIDE.md
+</code></pre></div>
+<p><strong>Purpose:</strong> Infrastructure-as-code and development tooling
+<strong>Current Package:</strong> Sandboxie v1.0 (production-ready)
+<strong>Features:</strong> 5 boxes, network hardening, automation, Cursor integration</p>
+<hr />
+<h2 id="templates-starter-kits">📦 TEMPLATES/ - Starter Kits<a class="headerlink" href="#templates-starter-kits" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>templates/
+├── README.md
+│
+├── starter-node-service/        # TypeScript + Express + PostgreSQL
+│   ├── .cursor/rules/
+│   │   └── coding-standards.mdc
+│   ├── .devcontainer/
+│   │   └── devcontainer.json
+│   ├── .github/
+│   │   ├── dependabot.yml
+│   │   └── workflows/ci.yml
+│   ├── .husky/
+│   │   └── pre-commit
+│   ├── src/
+│   │   ├── index.ts
+│   │   ├── pathHelper.ts
+│   │   └── postgres.ts
+│   ├── tests/
+│   │   └── basic.test.ts
+│   ├── docs/adr/
+│   ├── configs/
+│   ├── scripts/
+│   ├── .cursorignore
+│   ├── .editorconfig
+│   ├── .env.example
+│   ├── .gitignore
+│   ├── .prettierrc
+│   ├── compose.yml
+│   ├── CONTRIBUTING.md
+│   ├── Dockerfile
+│   ├── eslint.config.js
+│   ├── package.json
+│   ├── README.md
+│   └── tsconfig.json
+│
+├── starter-python-api/          # FastAPI + PostgreSQL
+│   ├── .cursor/rules/
+│   │   └── coding-standards.mdc
+│   ├── .devcontainer/
+│   │   └── devcontainer.json
+│   ├── .github/
+│   │   ├── CODEOWNERS
+│   │   ├── dependabot.yml
+│   │   ├── PULL_REQUEST_TEMPLATE.md
+│   │   └── workflows/ci.yml
+│   ├── src/
+│   │   ├── app.py
+│   │   └── path_helper.py
+│   ├── tests/
+│   │   └── test_app.py
+│   ├── docs/adr/
+│   │   ├── 0001-use-postgres.md
+│   │   └── 0002-use-env-vars-for-config.md
+│   ├── configs/
+│   ├── scripts/
+│   ├── .cursorignore
+│   ├── .editorconfig
+│   ├── .env.example
+│   ├── .gitignore
+│   ├── .pre-commit-config.yaml
+│   ├── compose.yml
+│   ├── CONTRIBUTING.md
+│   ├── Dockerfile
+│   ├── README.md
+│   └── requirements.txt
+│
+└── _archive/                    # Old versions
+    ├── Root-Arch_251026-0900_GPTT-V1/
+    └── Root-Arch_251026-0900_GPTT-V2/
+</code></pre></div>
+<p><strong>Purpose:</strong> Production-ready starter templates
+<strong>Languages:</strong> TypeScript (Node) + Python
+<strong>Features:</strong>
+- DevContainer support
+- Docker Compose
+- CI/CD (GitHub Actions)
+- Linting + formatting
+- Testing frameworks
+- Cursor AI integration
+- PostgreSQL integration
+- Health check endpoints</p>
+<hr />
+<h2 id="support-files">🔧 Support Files<a class="headerlink" href="#support-files" title="Permanent link">&para;</a></h2>
+<h3 id="root-level">Root Level<a class="headerlink" href="#root-level" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>C:\dev\
+├── .cursor/rules/
+│   └── write-notes.mdc           # Global Cursor rules
+│
+├── .github/
+│   ├── CODEOWNERS                # Code ownership
+│   ├── PULL_REQUEST_TEMPLATE.md  # PR template
+│   └── ISSUE_TEMPLATE/
+│       ├── bug_report.md
+│       ├── feature_request.md
+│       └── documentation.md
+│
+├── .vscode/
+│   └── settings.json             # Terminal config (PowerShell 5.1)
+│
+├── .gitattributes                # Git line endings
+├── .gitignore                    # Git exclusions
+├── README.md                     # Main overview
+├── NEXT_STEPS.md                 # Roadmap
+└── engineering-home.code-workspace  # VS Code workspace
+</code></pre></div>
+<hr />
+<h2 id="design-principles">🎯 Design Principles<a class="headerlink" href="#design-principles" title="Permanent link">&para;</a></h2>
+<h3 id="1-separation-of-concerns">1. Separation of Concerns<a class="headerlink" href="#1-separation-of-concerns" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>docs/</strong> - Knowledge &amp; documentation</li>
+<li><strong>infra/</strong> - Tooling &amp; infrastructure</li>
+<li><strong>templates/</strong> - Starter kits</li>
+<li><strong>apps/</strong> - (Future) Your applications</li>
+<li><strong>libs/</strong> - (Future) Shared libraries</li>
+</ul>
+<h3 id="2-consistent-naming">2. Consistent Naming<a class="headerlink" href="#2-consistent-naming" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Files: <code>YYYY-MM-DD_descriptive-title.md</code></li>
+<li>Folders: <code>lowercase-with-dashes</code></li>
+<li>Standards: Clear, descriptive names</li>
+</ul>
+<h3 id="3-ai-first">3. AI-First<a class="headerlink" href="#3-ai-first" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>.cursor/rules/</code> in every project</li>
+<li><code>.cursorignore</code> files</li>
+<li>Context packets for quick AI reference</li>
+<li>Co-located documentation</li>
+</ul>
+<h3 id="4-docker-first">4. Docker-First<a class="headerlink" href="#4-docker-first" title="Permanent link">&para;</a></h3>
+<ul>
+<li>All templates have <code>compose.yml</code></li>
+<li>DevContainer support</li>
+<li>Dockerfile included</li>
+<li>Health checks configured</li>
+</ul>
+<h3 id="5-documentation-first">5. Documentation-First<a class="headerlink" href="#5-documentation-first" title="Permanent link">&para;</a></h3>
+<ul>
+<li>README in every directory</li>
+<li>Usage examples included</li>
+<li>Decision logs (ADRs)</li>
+<li>Quick start guides</li>
+</ul>
+<hr />
+<h2 id="status-by-component">📈 Status by Component<a class="headerlink" href="#status-by-component" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Status</th>
+<th>Files</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>docs/</strong></td>
+<td>✅ Complete</td>
+<td>~20</td>
+<td>Knowledge base operational</td>
+</tr>
+<tr>
+<td><strong>infra/sandboxie</strong></td>
+<td>✅ v1.0</td>
+<td>25</td>
+<td>Production-ready</td>
+</tr>
+<tr>
+<td><strong>templates/node</strong></td>
+<td>✅ Ready</td>
+<td>~25</td>
+<td>TypeScript + Express + PostgreSQL</td>
+</tr>
+<tr>
+<td><strong>templates/python</strong></td>
+<td>✅ Ready</td>
+<td>~25</td>
+<td>FastAPI + PostgreSQL</td>
+</tr>
+<tr>
+<td><strong>Support files</strong></td>
+<td>✅ Complete</td>
+<td>~10</td>
+<td>Git, Cursor, GitHub configs</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="next-steps-planned">🚀 Next Steps (Planned)<a class="headerlink" href="#next-steps-planned" title="Permanent link">&para;</a></h2>
+<h3 id="immediate">Immediate<a class="headerlink" href="#immediate" title="Permanent link">&para;</a></h3>
+<ul>
+<li>[ ] Create <code>C:\dev\apps\</code> directory</li>
+<li>[ ] Clone first project from template</li>
+<li>[ ] Test Sandboxie installation</li>
+<li>[ ] Validate templates end-to-end</li>
+</ul>
+<h3 id="short-term">Short-term<a class="headerlink" href="#short-term" title="Permanent link">&para;</a></h3>
+<ul>
+<li>[ ] Add more templates (React, Go, Rust?)</li>
+<li>[ ] Create <code>libs/</code> for shared code</li>
+<li>[ ] Implement local-stack for AWS</li>
+<li>[ ] Add CI/CD examples</li>
+</ul>
+<h3 id="long-term">Long-term<a class="headerlink" href="#long-term" title="Permanent link">&para;</a></h3>
+<ul>
+<li>[ ] Multi-project workspace support</li>
+<li>[ ] Template versioning system</li>
+<li>[ ] Automated template updates</li>
+<li>[ ] Team collaboration patterns</li>
+</ul>
+<hr />
+<h2 id="questions-for-review">❓ Questions for Review<a class="headerlink" href="#questions-for-review" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Directory structure</strong> - Is this organization logical?</li>
+<li><strong>Duplication</strong> - Notice <code>infra/sandboxie/</code> appears twice (old + new location) - should we clean up?</li>
+<li><strong>Templates archive</strong> - Keep V1 and V2 in <code>_archive/</code> or delete?</li>
+<li><strong>Missing directories</strong> - Should we pre-create <code>apps/</code>, <code>libs/</code>, <code>scratch/</code>?</li>
+<li><strong>Documentation</strong> - Is the docs/ structure too complex or just right?</li>
+<li><strong>Naming</strong> - Any naming convention issues?</li>
+</ol>
+<hr />
+<h2 id="key-features-to-highlight">💡 Key Features to Highlight<a class="headerlink" href="#key-features-to-highlight" title="Permanent link">&para;</a></h2>
+<h3 id="1-complete-knowledge-base">1. Complete Knowledge Base<a class="headerlink" href="#1-complete-knowledge-base" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Organized by type (reference, research, summaries)</li>
+<li>AI-friendly formats (context packets)</li>
+<li>Version-controlled documentation</li>
+</ul>
+<h3 id="2-production-ready-templates">2. Production-Ready Templates<a class="headerlink" href="#2-production-ready-templates" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Both Node and Python</li>
+<li>Full DevContainer support</li>
+<li>CI/CD included</li>
+<li>Testing frameworks</li>
+<li>Cursor integration</li>
+</ul>
+<h3 id="3-security-tooling">3. Security Tooling<a class="headerlink" href="#3-security-tooling" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Sandboxie v1.0 fully integrated</li>
+<li>5 sandbox configurations</li>
+<li>Network hardening</li>
+<li>Automated cleanup</li>
+</ul>
+<h3 id="4-developer-experience">4. Developer Experience<a class="headerlink" href="#4-developer-experience" title="Permanent link">&para;</a></h3>
+<ul>
+<li>One-command setup</li>
+<li>Quick reference guides</li>
+<li>Automated testing</li>
+<li>Clear documentation</li>
+</ul>
+<hr />
+<h2 id="areas-for-improvement">🔍 Areas for Improvement<a class="headerlink" href="#areas-for-improvement" title="Permanent link">&para;</a></h2>
+<h3 id="potential-issues">Potential Issues<a class="headerlink" href="#potential-issues" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>infra/sandboxie</strong> duplication - Old location should be removed</li>
+<li><strong>templates/_archive</strong> - Consider if V1/V2 archives are needed</li>
+<li><strong>Empty directories</strong> - Some future directories not yet created</li>
+<li><strong>.pids directory</strong> - Contains terminal PIDs (should be in .gitignore)</li>
+</ol>
+<h3 id="recommendations">Recommendations<a class="headerlink" href="#recommendations" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Clean up duplicates</strong> - Remove <code>infra/sandboxie/</code> (keep only <code>infra/windows/sandboxie-integration/</code>)</li>
+<li><strong>Archive cleanup</strong> - Move template archives to <code>docs/archive/</code> or delete</li>
+<li><strong>Pre-create structure</strong> - Add <code>apps/</code>, <code>libs/</code>, <code>scratch/</code> with READMEs</li>
+<li><strong>Update .gitignore</strong> - Exclude <code>.pids/</code> directory</li>
+</ol>
+<hr />
+<h2 id="complete-file-tree">📝 Complete File Tree<a class="headerlink" href="#complete-file-tree" title="Permanent link">&para;</a></h2>
+<p>See attached: <code>DEV_STRUCTURE_TREE.txt</code> (451 lines)</p>
+<hr />
+<p><strong>Ready for GPT Review!</strong> 🚀</p>
+<p><strong>Please review and provide feedback on:</strong>
+- Structure logic and organization
+- Naming conventions
+- Areas for improvement
+- Missing components
+- Best practices alignment</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>

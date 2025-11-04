@@ -94,19 +94,61 @@ New-Item -ItemType Directory (Join-Path $dest ".cursor\rules") -Force | Out-Null
 # Project Standards
 - Windows 11 Pro, PowerShell-first
 - Names: ^[a-z0-9-]+$ ; no [] ()
-- Repo dirs: 10_DOCS/20_SRC/30_DATA/40_RUNTIME/50_CONFIG/99_ARCHIVE
+- Repo dirs: docs/src/tests/config/data/runtime
 - Deliverables: filenames, tree, PS cmds, tests, /health, logging, metrics
 - Use pathlib (Python), minimal deps, show diffs for edits
 "@ | Set-Content (Join-Path $dest ".cursor\rules\project-standards.mdc")
 
 @"
-30_DATA/
-40_RUNTIME/
+data/
+runtime/
 .env
 .env.*
 node_modules/
 __pycache__/
 "@ | Set-Content (Join-Path $dest ".cursorignore")
+
+# Normalize template layout to standard structure
+Write-Host "  Normalizing directory structure..." -ForegroundColor Cyan
+
+$dirMap = @{
+    "configs"   = "config"
+    "docs\adr"  = "docs\decisions"
+}
+
+foreach ($oldPath in $dirMap.Keys) {
+    $sourcePath = Join-Path $dest $oldPath
+    if (Test-Path $sourcePath) {
+        $targetPath = Join-Path $dest $dirMap[$oldPath]
+        $targetParent = Split-Path $targetPath -Parent
+
+        # Ensure parent directory exists
+        if ($targetParent -and !(Test-Path $targetParent)) {
+            New-Item -ItemType Directory -Path $targetParent -Force | Out-Null
+        }
+
+        # Create target directory
+        if (!(Test-Path $targetPath)) {
+            New-Item -ItemType Directory -Path $targetPath -Force | Out-Null
+        }
+
+        # Move contents
+        Get-ChildItem -Path $sourcePath -Recurse -File | ForEach-Object {
+            $relativePath = $_.FullName.Substring($sourcePath.Length).TrimStart('\')
+            $destFile = Join-Path $targetPath $relativePath
+            $destFileDir = Split-Path $destFile -Parent
+
+            if (!(Test-Path $destFileDir)) {
+                New-Item -ItemType Directory -Path $destFileDir -Force | Out-Null
+            }
+
+            Move-Item -Path $_.FullName -Destination $destFile -Force
+        }
+
+        # Remove old directory
+        Remove-Item -Path $sourcePath -Recurse -Force
+    }
+}
 
 # Step 4: Token replacement
 Write-Host "Step 4/6: Customizing configuration..." -ForegroundColor Cyan
@@ -146,8 +188,8 @@ APP_NAME=$Name
 DATABASE_URL=postgresql://postgres:postgres@db:5432/postgres
 
 # Data Directories (optional)
-# APP_DATA_DIR=./30_DATA
-# APP_LOG_DIR=./40_RUNTIME/logs
+# APP_DATA_DIR=./data
+# APP_LOG_DIR=./runtime/logs
 "@
 } else {
 @"
@@ -159,12 +201,12 @@ APP_NAME=$Name
 DATABASE_URL=postgresql://postgres:postgres@postgres:5432/postgres
 
 # Data Directories (optional)
-# APP_DATA_DIR=./30_DATA
-# APP_LOG_DIR=./40_RUNTIME/logs
+# APP_DATA_DIR=./data
+# APP_LOG_DIR=./runtime/logs
 "@
 }
 
-Set-Content -Path (Join-Path $dest "50_CONFIG\.env.example") -Value $envExample -Encoding UTF8
+Set-Content -Path (Join-Path $dest "config\.env.example") -Value $envExample -Encoding UTF8
 
 # Update main .env.example if it exists
 if (Test-Path (Join-Path $dest ".env.example")) {
@@ -193,7 +235,7 @@ Write-Host "Location: $dest" -ForegroundColor Cyan
 Write-Host ""
 Write-Host "Next steps:" -ForegroundColor Yellow
 Write-Host "  cd `"$dest`"" -ForegroundColor White
-Write-Host "  cp 50_CONFIG\.env.example .env" -ForegroundColor White
+Write-Host "  cp config\.env.example .env" -ForegroundColor White
 Write-Host "  # Edit .env with your settings" -ForegroundColor Gray
 Write-Host "  docker compose up --build" -ForegroundColor White
 Write-Host ""
@@ -201,10 +243,10 @@ Write-Host "Then visit:" -ForegroundColor Yellow
 Write-Host "  http://localhost:$Port/health" -ForegroundColor White
 Write-Host ""
 Write-Host "Directory structure:" -ForegroundColor Yellow
-Write-Host "  10_DOCS/     - Documentation" -ForegroundColor Gray
-Write-Host "  20_SRC/      - Source code" -ForegroundColor Gray
-Write-Host "  30_DATA/     - Data files (git-ignored)" -ForegroundColor Gray
-Write-Host "  40_RUNTIME/  - Runtime files, logs (git-ignored)" -ForegroundColor Gray
-Write-Host "  50_CONFIG/   - Configuration files" -ForegroundColor Gray
-Write-Host "  99_ARCHIVE/  - Archived/deprecated code" -ForegroundColor Gray
+Write-Host "  docs/     - Documentation" -ForegroundColor Gray
+Write-Host "  src/      - Source code" -ForegroundColor Gray
+Write-Host "  tests/    - Test files" -ForegroundColor Gray
+Write-Host "  config/   - Configuration files" -ForegroundColor Gray
+Write-Host "  data/     - Data files (git-ignored)" -ForegroundColor Gray
+Write-Host "  runtime/  - Runtime files, logs (git-ignored)" -ForegroundColor Gray
 Write-Host ""

@@ -1,0 +1,67 @@
+# Hot Context (Auto-Generated)
+
+**Last Updated**: 2025-10-26 18:44:24
+**Source**: Semantic search across project documentation
+**Queries**: "project standards and coding conventions", "recent architecture decisions", "directory structure and file organization", "testing patterns and requirements"
+**Note**: This file is auto-generated. Edit source docs, not this file.
+
+---
+
+## Current Project Context
+
+### 1. docs\standards\README.md - Examples
+
+**Relevance**: 0.84
+
+# Team Standards & Conventions
+
+Your personal or team coding standards and conventions.
+
+## What Goes Here
+
+- Coding style guides
+- Git workflow conventions
+- PR/code review guidelines
+- Security checklists
+- Documentation standards
+- Naming conventions
+
+---
+
+### 2. docs\standards\README.md - These Are Prescriptive
+
+**Relevance**: 0.72
+
+- PR/code review guidelines
+- Security checklists
+- Documentation standards
+- Naming conventions
+
+## Examples
+
+- `coding-style-guide.md` - How you write code
+- `git-workflow.md` - Branching strategy, commit conventions
+- `pr-checklist.md` - What to check before submitting PR
+- `security-review.md` -...
+
+---
+
+
+## How to Use This Context
+
+This file is automatically included by Cursor. It provides high-signal context about:
+- Project standards and conventions
+- Recent architecture decisions
+- File organization patterns
+
+**Refresh schedule**: Nightly at 3 AM + on commit (if docs changed)
+
+**Source files indexed**:
+- `docs/standards`
+- `docs/architecture`
+- `docs/architecture/decisions`
+- `README.md`
+
+---
+
+*For full details, see source files listed above.*

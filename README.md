@@ -1,105 +1,256 @@
-# Engineering Home
+# Engineering Home - Project Context OS
 
-This is the root playbook for our polyrepo workspace.
+**Complete development environment with integrated documentation, service catalog, code search, and architecture visualization.**
 
-## Structure
+## What Is This?
 
-- `docs/` – org docs, decisions, checklists, knowledge base
-- `templates/` – starter repos (Python API, Node service, etc.)
-- `infra/` – shared devops assets (Sandboxie kit, local stacks)
-- `.cursor/` – org-wide Cursor rules
+A durable, enterprise-grade engineering workspace that provides:
 
-## Getting Started
+- **Service Catalog** (Backstage) - Who owns what, service status
+- **Code Search** (Sourcegraph) - Find anything across all repos
+- **Documentation Portal** (MkDocs) - Searchable knowledge base
+- **Architecture Diagrams** (Structurizr) - Live C4 models
+- **Standardized Templates** - Bootstrap new services with best practices
+- **Decision Tracking** - Architecture Decision Records (ADRs)
 
-**New service?**
-1. Open a template under `templates/`
-2. Copy it to `C:\dev\apps\<new-app>`
-3. Run `git init` in the new app folder
-4. Follow the template's README for setup
+## Quick Start
 
-**Adding documentation?**
-- See `docs/README.md` for the full knowledge base structure
-- Add decisions to `docs/architecture/decisions/`
-- Use `docs/gpt-summaries/_inbox/` as a holding area, then organize by topic
+### First Time Setup
 
-**Setting up infra?**
-- Sandboxie configuration: `infra/sandboxie/`
-- Local development stacks: `templates/*/infra/local-stack/`
-
-## Quick Commands
-
-**Bootstrap a new Python API:**
 ```powershell
-Copy-Item -Recurse -Force C:\dev\templates\starter-python-api C:\dev\apps\my-new-api
-cd C:\dev\apps\my-new-api
+# See complete setup guide
+code GETTING_STARTED.md
+
+# Or quick start:
+cd C:\DEV
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install mkdocs-material mkdocs-mermaid2 pydeps
+npm install
+```
+
+### Start Everything
+
+```powershell
+.\scripts\up.ps1 -all
+```
+
+### Access Portals
+
+- **Documentation:** http://localhost:8000 (MkDocs)
+- **Service Catalog:** http://localhost:7007 (Backstage)
+- **Code Search:** http://localhost:7080 (Sourcegraph)
+- **Architecture:** http://localhost:8081 (Structurizr)
+
+## Directory Structure
+
+```
+C:\DEV\
+├── docs/                      Complete documentation
+│   ├── guides/               Step-by-step guides
+│   ├── architecture/         Decisions, diagrams, integrations
+│   ├── reference/            Quick reference materials
+│   └── index.md              Documentation portal home
+├── backstage/                 Service catalog portal
+├── sourcegraph/               Code search engine
+├── templates/                 Service templates
+│   ├── starter-python-api/   FastAPI template
+│   └── starter-node-service/ Node.js template
+├── scripts/                   Automation scripts
+│   ├── up.ps1                Start systems
+│   ├── down.ps1              Stop systems
+│   ├── new-adr.ps1           Create ADR
+│   └── gen-structure.ps1     Update workspace map
+├── services/                  Sample services
+├── apps/                      Your applications (separate repos)
+├── libs/                      Shared libraries (separate repos)
+├── tools/                     Development tools
+├── infra/                     Infrastructure configs
+├── .cursor/rules/             Cursor context files
+├── GETTING_STARTED.md         Complete setup guide
+├── STATUS.md                  Current system status
+└── STRUCTURE.md               Workspace map ("the bible")
+```
+
+## Common Tasks
+
+### Create a New Service
+
+```powershell
+# Create from template
+.\scripts\new-service.ps1 -Name my-api -Type api
+
+# Or manually
+Copy-Item -Recurse templates\starter-python-api apps\my-api
+cd apps\my-api
 git init
 cp .env.example .env
-docker compose up --build
 ```
 
-**Bootstrap a new Node service:**
+### Create an ADR
+
 ```powershell
-Copy-Item -Recurse -Force C:\dev\templates\starter-node-service C:\dev\apps\my-new-service
-cd C:\dev\apps\my-new-service
-git init
-cp .env.example .env
-docker compose up --build
+.\scripts\new-adr.ps1 "Use PostgreSQL for persistence"
+# Creates: docs/architecture/decisions/YYYY-MM-DD_use-postgresql-for-persistence.md
 ```
 
-## Workspace Setup
+### Generate Dependency Graphs
 
-**Multi-root workspace** (open home + active apps together):
-```json
-{
-  "folders": [
-    { "path": "." },
-    { "path": "../apps/my-api" },
-    { "path": "../libs/auth-sdk" }
-  ],
-  "settings": {
-    "files.exclude": { "**/.git": true }
-  }
-}
+```powershell
+.\scripts\gen-ts-deps.ps1    # TypeScript projects
+.\scripts\gen-py-deps.ps1    # Python projects
 ```
-Save as `engineering-home.code-workspace` and open in Cursor.
 
-## Polyrepo Structure
+### Update Workspace Map
+
+```powershell
+.\scripts\gen-structure.ps1
+# Updates: STRUCTURE.md
+```
+
+### Health Check
+
+```powershell
+.\scripts\smoke.ps1
+```
+
+## Key Documentation
+
+### Getting Started
+- **[GETTING_STARTED.md](GETTING_STARTED.md)** - Complete setup guide
+- **[STATUS.md](STATUS.md)** - Current system status
+- **[STRUCTURE.md](STRUCTURE.md)** - Complete workspace map
+
+### Guides
+- **[Complete System Guide](docs/guides/complete-system-guide.md)** - 60+ page comprehensive guide
+- **[Implementation Checklist](docs/guides/implementation-checklist.md)** - Step-by-step implementation
+- **[Quick Reference](docs/guides/quick-reference.md)** - Commands and URLs
+
+### Architecture
+- **[Architecture Overview](docs/architecture/README.md)** - System design
+- **[Decisions (ADRs)](docs/architecture/decisions/)** - All architecture decisions
+- **[Integration Guides](docs/architecture/integration/)** - How systems connect
+- **[C4 Diagrams](docs/architecture/c4/workspace.dsl)** - Visual architecture
+
+### References
+- **[Git Commands](docs/reference/git-commands.md)** - Git cheat sheet
+- **[Docker Commands](docs/reference/docker-commands.md)** - Docker reference
+
+## Polyrepo Workspace
+
+This workspace manages multiple repositories:
 
 ```
-C:\dev\
-├── engineering-home\     ← THIS REPO (standards, templates, docs)
+C:\DEV\
+├── engineering-home\     ← THIS REPO (standards, templates, Context OS)
 ├── apps\
-│   ├── user-service\     ← separate git repo
-│   ├── order-api\        ← separate git repo
+│   ├── user-service\    ← separate repo
+│   ├── order-api\       ← separate repo
 │   └── ...
 └── libs\
-    ├── auth-sdk\         ← separate git repo
-    ├── db-utils\         ← separate git repo
+    ├── auth-sdk\        ← separate repo
     └── ...
 ```
 
-**Each app/library is its own repo.** This repo is the shared foundation.
+Each app/lib is its own git repository. This repo (`engineering-home`) provides:
+- Shared documentation
+- Service templates
+- Development tools
+- Standards and conventions
+- Project Context OS infrastructure
 
-## Philosophy
+## Scripts Reference
 
-**This repo IS:**
-- Your top-level playbook & skeleton
-- A place new projects start from
-- A hub that links out to each app/library repo
+| Script | Purpose |
+|--------|---------|
+| `up.ps1` | Start Context OS systems |
+| `down.ps1` | Stop all systems |
+| `smoke.ps1` | Health check all services |
+| `new-adr.ps1` | Create Architecture Decision Record |
+| `new-service.ps1` | Scaffold new service from template |
+| `gen-structure.ps1` | Update STRUCTURE.md map |
+| `gen-ts-deps.ps1` | Generate TypeScript dependency graphs |
+| `gen-py-deps.ps1` | Generate Python dependency graphs |
+| `backup-sourcegraph.ps1` | Backup Sourcegraph data |
+| `scaffold-repo.ps1` | Initialize new repository |
 
-**This repo ISN'T:**
-- A monorepo for all your services
-- Where you store secrets (only `.env.example` files)
-- A place for project-specific docs (those go in each project repo)
+## Template Services
 
-## Related Resources
+### Python FastAPI
+```powershell
+templates/starter-python-api/
+├── src/              FastAPI application
+├── tests/            Pytest tests
+├── docs/             Documentation
+├── Dockerfile        Production build
+├── compose.yml       Local development
+└── requirements.txt  Dependencies
+```
 
-- Knowledge base guide: `docs/README.md`
-- Quick start: `docs/QUICK_START.md`
-- Git workflow: `docs/standards/git-workflow.md`
-- Sandboxie integration: `infra/sandboxie/docs/SANDBOXIE_INTEGRATION.md`
+### Node.js TypeScript
+```powershell
+templates/starter-node-service/
+├── src/              TypeScript source
+├── tests/            Jest tests
+├── docs/             Documentation
+├── Dockerfile        Production build
+├── compose.yml       Local development
+└── package.json      Dependencies
+```
+
+## Cursor Integration
+
+This workspace includes Cursor context rules:
+
+- `.cursor/rules/project-context-os-enterprise.mdc` - Project Context OS standards
+- `.cursor/rules/context-hot.mdc` - Generated hot context (future)
+
+These files help Cursor understand your workspace structure and conventions.
+
+## CI/CD
+
+GitHub Actions workflows in `.github/workflows/`:
+
+- `ci-docs.yml` - Build and test documentation
+- `ci-deps.yml` - Auto-generate dependency graphs
+- `security.yml` - Weekly CodeQL security scans
+- `structure.yml` - Auto-update STRUCTURE.md
+
+## Support
+
+### Documentation
+- Browse: http://localhost:8000 (when MkDocs running)
+- Search: Press `/` in MkDocs
+
+### Find Services
+- Catalog: http://localhost:7007 (Backstage)
+
+### Search Code
+- Search: http://localhost:7080 (Sourcegraph)
+
+### View Architecture
+- Diagrams: http://localhost:8081 (Structurizr)
+
+### Issues
+- Check [STATUS.md](STATUS.md) for current system status
+- See [GETTING_STARTED.md](GETTING_STARTED.md) troubleshooting section
+- Review [docs/guides/](docs/guides/) for comprehensive guides
+
+## Contributing
+
+1. Create an ADR for significant decisions
+2. Update documentation when adding features
+3. Follow templates for new services
+4. Run health checks before committing
+5. Update STRUCTURE.md if changing directory layout
+
+## Resources
+
+- **Backstage:** https://backstage.io/docs
+- **Sourcegraph:** https://docs.sourcegraph.com
+- **MkDocs:** https://squidfunk.github.io/mkdocs-material/
+- **Structurizr:** https://structurizr.com/help/dsl
 
 ---
 
-**Created:** 2025-10-26
-**Last Updated:** 2025-10-26
+**Status:** ✅ Operational | **Last Updated:** 2025-10-27 | **Version:** 1.0

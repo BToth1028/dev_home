@@ -1,0 +1,63 @@
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: engineering-home
+  description: Project Context OS - Engineering workspace management
+  tags:
+    - platform
+    - documentation
+    - portal
+spec:
+  owner: team-platform
+  domain: infrastructure
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: docs-portal
+  description: MkDocs documentation site
+  annotations:
+    backstage.io/techdocs-ref: dir:../docs
+  tags:
+    - documentation
+    - mkdocs
+spec:
+  type: documentation
+  lifecycle: production
+  owner: team-platform
+  system: engineering-home
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: structurizr
+  description: C4 architecture diagrams
+  tags:
+    - architecture
+    - diagrams
+spec:
+  type: documentation
+  lifecycle: production
+  owner: team-platform
+  system: engineering-home
+  providesApis:
+    - structurizr-api
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: structurizr-api
+  description: Structurizr workspace API
+spec:
+  type: openapi
+  lifecycle: production
+  owner: team-platform
+  system: engineering-home
+  definition: |
+    openapi: 3.0.0
+    info:
+      title: Structurizr Lite API
+      version: 1.0.0

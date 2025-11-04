@@ -1,0 +1,13 @@
+{
+	"name": "engineering-home",
+	"version": "1.0.0",
+	"description": "Engineering workspace with Project Context OS",
+	"private": true,
+	"scripts": {
+		"deps:ts": "depcruise --include-only \"src\" --output-type dot src > docs/architecture/ts-deps.dot",
+		"deps:check": "depcruise --validate .dependency-cruiser.js src"
+	},
+	"devDependencies": {
+		"dependency-cruiser": "^16.3.0"
+	}
+}
